@@ -1,25 +1,26 @@
 import { Outlet } from 'react-router-dom';
-import { Container, Header, Logo, Link } from './Header.styled';
+import { NavLink } from 'react-router-dom';
 
 export const HeaderComponent = () => {
   return (
-    <Container>
-      <Header>
-        <Logo>
-          <span role="img" aria-label="computer icon">
-            💻
-          </span>{' '}
-          GoMerch Store
-        </Logo>
+    <div className="container">
+      <header>
         <nav>
-          <Link to="/" end>
-            Home
-          </Link>
-          <Link to="/about">About</Link>
-          <Link to="/products">Products</Link>
+          <ul>
+            <li>
+              <NavLink to="/" className="navlink">
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/about" className="navlink">
+                Movies
+              </NavLink>
+            </li>
+          </ul>
         </nav>
-      </Header>
+      </header>
       <Outlet />
-    </Container>
+    </div>
   );
 };
