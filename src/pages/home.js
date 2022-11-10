@@ -1,16 +1,16 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
 const request =
-  'https://api.themoviedb.org/3/trending/all/day?api_key=79f5f6d0598b4877015b692900b7580b';
+  'https://api.themoviedb.org/3/trending/all/day?api_key=2994e3a31c3cad99fd99bf3fe61d916f';
 
 export const Home = () => {
-  const [trendList, useTrendList] = useState('');
+  // const [trendList, useTrendList] = useState('');
 
   const fetchMovies = async () => {
     const response = await fetch(request);
-    useTrendList(response);
-    console.log(trendList);
+    // useTrendList(response);
+    console.log(response);
   };
-  // fetchMovies();
+  fetchMovies();
   return <h1>Trending today</h1>;
 };
