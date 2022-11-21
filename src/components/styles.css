@@ -1,8 +1,11 @@
-ul {
+
+.header-items {
   list-style: none;
   display: flex;
   height: 50px;
   align-items: center;
+  margin: 0;
+  background-color: black;
   border-bottom: 1px solid black;
 }
 li {
@@ -10,9 +13,64 @@ li {
 }
 .navlink {
     text-decoration: none;
-    color: black;
+    color: white;
 }
 .navlink:hover {
     color: orange;
 
+}
+.homepage-container {
+    padding-left: 30px;
+}
+.go-back-button {
+    margin: 10px 0 10px 40px;
+}
+.movie-container {
+    padding-left: 30px;
+}
+.movie-card {
+    display: flex;
+}
+.movie-info {
+    list-style: none;
+}
+.movie-img {
+    margin-left: 40px;
+}
+.user-score {
+    margin-bottom: 10px;
+}
+.genre-list {
+    display: flex;
+    align-items: center;
+}
+.genre-title {
+    margin-right: 5px;
+}
+.genre-list > p {
+    margin-right: 5px;
+}
+.movie-more-info {
+    display: flex;
+    list-style: none;
+    margin-top: -25px;
+    margin-left: 240px;
+}
+.actors-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+.actor {
+    align-items: center;
+    margin-bottom: 15px;
+    text-align: center;
+    width: 150px;
+    height: 300px;
+}
+form {
+    margin-top: 20px;
+}
+.title {
+    text-align: center;
 }

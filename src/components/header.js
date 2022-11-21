@@ -6,21 +6,20 @@ export const HeaderComponent = () => {
     <div className="container">
       <header>
         <nav>
-          <ul>
+          <ul className="header-items">
             <li>
               <NavLink to="/" className="navlink">
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink to="/about" className="navlink">
+              <NavLink to="/movies" className="navlink">
                 Movies
               </NavLink>
             </li>
           </ul>
         </nav>
       </header>
-      <Outlet />
     </div>
   );
 };

@@ -1,27 +1,35 @@
-// import { useState } from 'react';
-import axios from 'axios';
-import { NavLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { fetchTrends } from 'components/api';
+import { Trends } from 'components/trends';
+import { Error } from 'components/Error';
+import { HeaderComponent } from 'components/header';
 
-// const request =
-//   'https://api.themoviedb.org/3/trending/all/day?api_key=2994e3a31c3cad99fd99bf3fe61d916f';
-
-export const Home = async () => {
-  // const [trendList, useTrendList] = useState('');
-
-  const response = await axios.get(
-    `https://api.themoviedb.org/3/trending/movie/day?api_key=2994e3a31c3cad99fd99bf3fe61d916f&language=en-US`
-  );
-  // useTrendList(response);
-  const result = response.data.results;
-
+const Home = () => {
+  const [movies, setMovies] = useState([]);
+  const [error, setError] = useState('');
+  useEffect(() => {
+    const fetchTrendFilms = async () => {
+      try {
+        const response = await fetchTrends();
+        const result = response.results;
+        setMovies(result);
+        // console.log(movies);
+      } catch (error) {
+        setError(error);
+      }
+    };
+    fetchTrendFilms();
+  }, []);
   return (
     <div>
-      <h1>Trending today</h1>
-      <ul>
-        {result.map(({ title }) => (
-          <NavLink to="/film">{title}</NavLink>
-        ))}
-      </ul>
+      <HeaderComponent />
+      <div className="homepage-container">
+        <h1>Trends today</h1>
+        <Trends movies={movies} />
+        {error && <Error />}
+      </div>
     </div>
   );
 };
+
+export default Home;
