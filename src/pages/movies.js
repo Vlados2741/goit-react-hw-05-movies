@@ -3,7 +3,7 @@ import { Search } from 'components/search';
 import { useEffect, useState } from 'react';
 import { Trends } from 'components/trends';
 import { fetchFilmByName } from 'components/api';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { Error } from 'components/Error';
 
 const Movies = () => {
@@ -29,7 +29,7 @@ const Movies = () => {
       }
     };
     fetchSearchedFilm();
-  }, [searchParams]);
+  }, [search]);
 
   const onSubmit = name => {
     setSearchParams({ search: name });
