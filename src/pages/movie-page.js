@@ -1,11 +1,5 @@
 import { useState, useEffect } from 'react';
-import {
-  useParams,
-  useNavigate,
-  useLocation,
-  NavLink,
-  Outlet,
-} from 'react-router-dom';
+import { useParams, useLocation, Outlet, NavLink } from 'react-router-dom';
 import { fetchFilm } from 'components/api';
 import { Error } from 'components/Error';
 import { HeaderComponent } from 'components/header';
@@ -23,9 +17,7 @@ export const MoviePage = () => {
   const reviewPage = location.pathname.includes('reviews');
   const reviewLink = reviewPage ? `/movies/${id}` : `/movies/${id}/reviews`;
 
-  const navigate = useNavigate('/');
   const imageURL = 'https://image.tmdb.org/t/p/w500';
-
   useEffect(() => {
     const movieInfo = async () => {
       try {
@@ -42,17 +34,12 @@ export const MoviePage = () => {
     movieInfo();
   }, [id]);
 
-  const toHome = () => navigate('/');
-  const toMovies = () => navigate('/movies');
   return (
     <div>
       <HeaderComponent />
       <div>
-        <button className="go-back-button" type="button" onClick={toHome}>
-          To trends
-        </button>
-        <button className="go-back-button" type="button" onClick={toMovies}>
-          To movies
+        <button className="go-back-button">
+          <NavLink to={location.state.from}>Go back</NavLink>
         </button>
       </div>
 
