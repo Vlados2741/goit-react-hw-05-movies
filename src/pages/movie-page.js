@@ -33,7 +33,6 @@ export const MoviePage = () => {
     };
     movieInfo();
   }, [id]);
-
   return (
     <div>
       <HeaderComponent />
