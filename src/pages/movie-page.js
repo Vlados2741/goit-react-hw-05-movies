@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useLocation, Outlet, NavLink } from 'react-router-dom';
-import { fetchFilm } from 'components/api';
+import { fetchFilm } from 'components/services/api';
 import { Error } from 'components/Error';
 import { HeaderComponent } from 'components/header';
 
@@ -8,6 +8,7 @@ export const MoviePage = () => {
   const [state, setState] = useState(null);
   const [error, setError] = useState('');
   const [genresList, setGenresList] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const { id } = useParams();
   const location = useLocation();
@@ -21,12 +22,14 @@ export const MoviePage = () => {
   useEffect(() => {
     const movieInfo = async () => {
       try {
+        setLoading(true);
         const info = await fetchFilm(id);
         const genres = info.genres.map(({ name, id }) => (
           <p key={id}>{name}</p>
         ));
         setState(info);
         setGenresList(genres);
+        setLoading(false);
       } catch (error) {
         setError(error);
       }
@@ -36,6 +39,7 @@ export const MoviePage = () => {
   return (
     <div>
       <HeaderComponent />
+      {loading && <h3>Loading...</h3>}
       <div>
         <button className="go-back-button">
           <NavLink to={location.state.from}>Go back</NavLink>

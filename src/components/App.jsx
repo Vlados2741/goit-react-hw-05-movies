@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-import './styles.css';
+import './styles/styles.css';
 
 const Home = lazy(() => import('../pages/home'));
 const Movie = lazy(() => import('../pages/movies'));

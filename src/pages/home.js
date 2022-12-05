@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchTrends } from 'components/api';
+import { fetchTrends } from 'components/services/api';
 import { Trends } from 'components/trends';
 import { Error } from 'components/Error';
 import { HeaderComponent } from 'components/header';
@@ -7,13 +7,15 @@ import { HeaderComponent } from 'components/header';
 const Home = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchTrendFilms = async () => {
       try {
+        setLoading(true);
         const response = await fetchTrends();
         const result = response.results;
         setMovies(result);
-        // console.log(movies);
+        setLoading(false);
       } catch (error) {
         setError(error);
       }
@@ -23,6 +25,7 @@ const Home = () => {
   return (
     <div>
       <HeaderComponent />
+      {loading && <h3>Loading...</h3>}
       <div className="homepage-container">
         <h1>Trends today</h1>
         <Trends movies={movies} />
